@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road to Grandmaster - Chess</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Menu Screen -->
+    <div id="menu-screen" class="screen">
+        <h1 class="main-title">ROAD TO GRANDMASTER</h1>
+        
+        <div class="menu-list">
+            <div class="menu-card unlocked" data-level="1">
+                <span class="tag" id="tag-1">[ UNLOCKED ]</span>
+                <h2>Candidate Master</h2>
+                <p class="desc">Level 1: Beginner AI</p>
+            </div>
+            <div class="menu-card locked" data-level="2" id="card-2">
+                <span class="tag" id="tag-2">[ LOCKED ]</span>
+                <h2>FIDE Master</h2>
+                <p class="desc">Level 2: Intermediate AI</p>
+            </div>
+            <div class="menu-card locked" data-level="3" id="card-3">
+                <span class="tag" id="tag-3">[ LOCKED ]</span>
+                <h2>International Master</h2>
+                <p class="desc">Level 3: Hard AI</p>
+            </div>
+            <div class="menu-card locked" data-level="4" id="card-4">
+                <span class="tag" id="tag-4">[ LOCKED ]</span>
+                <h2>Grandmaster</h2>
+                <p class="desc">Level 4: Expert AI (Deadly)</p>
+            </div>
+            <!-- 2 Player Mode -->
+            <div class="menu-card play-mode" id="btn-twoplayer">
+                <span class="tag green">[ PASS & PLAY ]</span>
+                <h2>2 Player Mode</h2>
+                <p class="desc">Play with a friend locally</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chess Board Game Screen -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-container">
+            <h2 id="game-title">Game Mode</h2>
+            <div id="board"></div>
+            <div id="status"></div>
+
+            <!-- Action Buttons Panel -->
+            <div class="action-buttons">
+                <button id="btn-home" class="ctrl-btn home-btn">🏠 Home</button>
+                <button id="btn-undo" class="ctrl-btn undo-btn">↩ Undo</button>
+                <button id="btn-hint" class="ctrl-btn hint-btn">💡 Hint</button>
+                <button id="btn-restart" class="ctrl-btn restart-btn">🏁 Restart</button>
+                <button id="btn-theme" class="ctrl-btn theme-btn">🎨 Theme</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Popup Modal -->
+    <div id="custom-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-text">Message</p>
+            <button id="modal-btn" class="ctrl-btn hint-btn">OK</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
