@@ -1,0 +1,19 @@
+{
+  "background_color": "#1e1e1e",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Road To Grandmaster",
+  "orientation": "portrait",
+  "scope": "/ChessGame/",
+  "short_name": "Road to GM",
+  "start_url": "/ChessGame/",
+  "theme_color": "#2c1810",
+  "lang": "en",
+  "id": "com.ke2un.roadtograndmaster",
+  "description": "\"Play classic chess, sharpen your strategy, and become a grandmaster!\"",
+  "categories": [
+    "entertainment",
+    "games",
+    "sports"
+  ]
+}
