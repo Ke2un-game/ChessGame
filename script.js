@@ -213,28 +213,47 @@ function handleSquareClick(square) {
             selectedSquare = square;
             renderBoard();
         }
-    } else {
-        var move = game.move({
-            from: selectedSquare,
-            to: square,
-            promotion: 'p'
-        });
+     } else {
+        var piece = game.get(selectedSquare);
+        var isPromotion = (piece && piece.type === 'p' && ((piece.color === 'w' && square[1] === '8') || (piece.color === 'b' && square[1] === '1')));
 
-        selectedSquare = null;
-        if (move === null) {
-            var piece = game.get(square);
-            if (piece && piece.color === game.turn()) {
-                selectedSquare = square;
+        if (isPromotion) {
+            showPromotionModal(function(chosenPiece) {
+                var move = game.move({
+                    from: selectedSquare,
+                    to: square,
+                    promotion: chosenPiece
+                });
+                selectedSquare = null;
+                renderBoard();
+                checkGameEnd();
+
+                if (currentMode !== 'twoplayer' && !game.game_over() && game.turn() === 'b') {
+                    setTimeout(makeAIMove, 300);
+                }
+            });
+        } else {
+            var move = game.move({
+                from: selectedSquare,
+                to: square
+            });
+
+            selectedSquare = null;
+            if (move === null) {
+                var clickedPiece = game.get(square);
+                if (clickedPiece && clickedPiece.color === game.turn()) {
+                    selectedSquare = square;
+                }
+            }
+            renderBoard();
+            checkGameEnd();
+
+            if (currentMode !== 'twoplayer' && !game.game_over() && game.turn() === 'b') {
+                setTimeout(makeAIMove, 300);
             }
         }
-        renderBoard();
-        checkGameEnd();
-
-        if (currentMode !== 'twoplayer' && !game.game_over() && game.turn() === 'b') {
-            setTimeout(makeAIMove, 300);
-        }
     }
-}
+    
 
 function getPieceValue(piece) {
     if (!piece) return 0;
@@ -366,3 +385,21 @@ function updateStatus() {
         statusEl.textContent = text;
     }
 }
+
+function showPromotionModal(callback) {
+    var modal = document.getElementById('promotion-modal');
+    modal.classList.remove('hidden');
+
+    const buttons = modal.querySelectorAll('.promo-btn');
+    buttons.forEach(button => {
+        var newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+        
+        newButton.addEventListener('click', function() {
+            var chosenPiece = this.getAttribute('data-piece');
+            modal.classList.add('hidden');
+            callback(chosenPiece);
+        });
+    });
+}
+    
